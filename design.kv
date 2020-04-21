@@ -6,3 +6,5 @@
 
 <DeleteSaveButton>:
     size_hint: 0.35, 0.2
+    on_press:
+        app.screen_manager.current_screen.delete_save(self.get_saveID())
