@@ -7,4 +7,19 @@
 <DeleteSaveButton>:
     size_hint: 0.35, 0.2
     on_press:
-        app.screen_manager.current_screen.delete_save(self.get_saveID())
+        app.window.current = 'del-save'
+		app.window.transition.direction = 'down'
+		app.window.current_screen.build(self.get_saveID())
+
+<VerifyDeleteButton>:
+	size_hint: 0.3, 0.1
+	on_press:
+		app.window.current = 'start'
+		app.window.transition.direction = 'up'
+		app.window.current_screen.delete_save(self.text, self.get_saveID)
+
+<StartScreen>:
+	name: 'start'
+
+<DeleteSaveScreen>:
+	name: 'del-save'
