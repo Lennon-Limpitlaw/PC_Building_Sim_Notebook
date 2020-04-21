@@ -32,16 +32,3 @@ class StartScreen(Screen):
                 delete_button = DeleteSaveButton(0.6, 0.7-i*0.3, 'X', i, background_color=(0,0,0,0))
                 self.add_widget(save_button)
                 self.add_widget(delete_button)
-
-    def delete_save(self, saveID):
-        '''Deletes a save from the database'''
-        the_label = Label() # Continue from here for delete validation
-
-
-
-        table = 'saves'
-        conditions = ['saveID = ' + str(saveID)]
-
-        self.__handler.delete_query(table, conditions)
-
-        self.build()
