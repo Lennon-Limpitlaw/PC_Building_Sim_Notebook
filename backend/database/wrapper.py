@@ -7,7 +7,7 @@ class Handler(object):
 
     def select_query(self, elements, table, conditions, order=None):
         query = '''
-        SELECT 
+        SELECT
         '''
 
         for element in elements:
@@ -44,6 +44,20 @@ class Handler(object):
             query += condition + ' AND '
 
         query = query[:-5] + ';'
+
+        connection, cursor = self.__get_conn_and_cur()
+
+        cursor.execute(query)
+        connection.commit()
+        connection.close()
+
+    def insert_query(self, table, values):
+        query = 'INSERT INTO ' + table + ' VALUES('
+
+        for value in values:
+            query += value + ', '
+
+        query = query[:-2] + ';'
 
         connection, cursor = self.__get_conn_and_cur()
 

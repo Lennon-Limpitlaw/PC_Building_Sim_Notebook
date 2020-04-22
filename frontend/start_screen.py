@@ -42,3 +42,6 @@ class StartScreen(Screen):
 
 		else:
 			pass
+
+	def create_save(self):
+		pass
