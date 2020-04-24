@@ -38,6 +38,9 @@ class StartScreen(Screen):
 
 			self.__handler.delete_query(table, conditions)
 
+			table = 'notes'
+			self.__handler.delete_query(table, conditions)
+
 			self.build()
 
 		else:
