@@ -3,6 +3,7 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 from frontend.start_screen import StartScreen
 from frontend.delete_save_screen import DeleteSaveScreen
+from frontend.create_save_screen import CreateSaveScreen
 
 
 Builder.load_file('design.kv')
@@ -13,8 +14,10 @@ class WindowManager(ScreenManager):
 		super(WindowManager, self).__init__(**kwargs)
 		self.__start_screen = StartScreen(filename)
 		self.__delete_save_screen = DeleteSaveScreen()
+		self.__create_save_screen = CreateSaveScreen()
 		self.add_widget(self.__start_screen)
 		self.add_widget(self.__delete_save_screen)
+		self.add_widget(self.__create_save_screen)
 		self.current_screen = self.__start_screen
 
 

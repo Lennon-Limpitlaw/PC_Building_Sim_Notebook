@@ -12,6 +12,7 @@ class StartScreen(Screen):
 
 	def build(self):
 		'''Builds the screen with the saves that exist'''
+		self.clear_widgets()
 		saves = self.__handler.select_query('*', 'Saves', None)
 		save_bars = [None, None, None]
 
@@ -20,7 +21,7 @@ class StartScreen(Screen):
 
 		for i in range(len(save_bars)):
 			if save_bars[i] is not None:
-				save_button = SaveButton(0.05, 0.7-i*0.3, 'Save %d'%i, i)
+				save_button = SaveButton(0.05, 0.7-i*0.3, 'Save %d\nUsername: %s'%(i+1, saves[i][1]), i)
 				delete_button = DeleteSaveButton(0.6, 0.7-i*0.3, 'X', i)
 				self.add_widget(save_button)
 				self.add_widget(delete_button)
@@ -30,6 +31,7 @@ class StartScreen(Screen):
 				self.add_widget(save_button)
 
 	def delete_save(self, verify, saveID):
+		'''Deletes a specified save with validation'''
 		if verify == 'Yes':
 			table = 'saves'
 			conditions = ['saveID = ' + str(saveID)]
@@ -41,5 +43,11 @@ class StartScreen(Screen):
 		else:
 			pass
 
-	def create_save(self, saveID):
-		pass
+	def create_save(self, saveID, username):
+		'''Creates a new save, from a specified save slot and a given username'''
+		table = 'saves'
+		values = [str(saveID), '\'%s\''%username]
+
+		self.__handler.insert_query(table, values)
+
+		self.build()
