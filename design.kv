@@ -3,6 +3,8 @@
 
 <CreateSaveButton>:
     size_hint: 0.5, 0.2
+    on_press:
+    app.window.current_screen.create_save(self.get__saveID())
 
 <DeleteSaveButton>:
     size_hint: 0.35, 0.2
