@@ -43,3 +43,14 @@ class VerifyDeleteButton(Button):
 
 	def get_saveID(self):
 		return self.__saveID
+
+
+class SubmitSaveButton(Button):
+	def __init__(self, x, y, text, saveID, **kwargs):
+		super(SubmitSaveButton, self).__init__(**kwargs)
+		self.pos_hint = {'x':x, 'y':y}
+		self.text = text
+		self.__saveID = saveID
+
+	def get_saveID(self):
+		return self.__saveID

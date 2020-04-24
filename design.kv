@@ -4,7 +4,9 @@
 <CreateSaveButton>:
     size_hint: 0.5, 0.2
     on_press:
-    app.window.current_screen.create_save(self.get__saveID())
+        app.window.current = 'create-save'
+        app.window.transition.direction = 'left'
+        app.window.current_screen.build(self.get_saveID())
 
 <DeleteSaveButton>:
     size_hint: 0.35, 0.2
@@ -20,8 +22,19 @@
 		app.window.transition.direction = 'up'
 		app.window.current_screen.delete_save(self.text, self.get_saveID)
 
+<SubmitSaveButton>:
+    size_hint: 0.5, 0.2
+    on_press:
+        temp = app.window.current_screen.username_box.text
+        app.window.current = 'start'
+        app.window.transition.direction = 'right'
+        app.window.current_screen.create_save(self.__saveID, temp)
+
 <StartScreen>:
 	name: 'start'
 
 <DeleteSaveScreen>:
 	name: 'del-save'
+
+<CreateSaveScreen>:
+    name: 'create-save'
