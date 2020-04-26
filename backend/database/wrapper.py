@@ -6,9 +6,7 @@ class Handler(object):
 		self.__filename = filename
 
 	def select_query(self, elements, table, conditions, order=None):
-		query = '''
-		SELECT
-		'''
+		query = 'SELECT '
 
 		for element in elements:
 			query += element + ', '

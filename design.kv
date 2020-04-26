@@ -1,5 +1,9 @@
 <SaveButton>:
     size_hint: 0.5, 0.2
+    on_press:
+        app.window.current = 'notes'
+        app.window.transition.direction = 'up'
+        app.window.current_screen.build(saveID=self.get_saveID())
 
 <CreateSaveButton>:
     size_hint: 0.5, 0.2
@@ -30,6 +34,36 @@
         app.window.transition.direction = 'right'
         app.window.current_screen.create_save(self.get_saveID(), temp)
 
+<NoteButton>:
+    size_hint: 0.35, 0.2
+    on_press:
+        app.window.current = 'note'
+        app.window.transition.direction = 'up'
+        app.window.current_screen.build(self.get_noteID())
+
+<NextButton>:
+    size_hint: 0.1, 0.05
+    on_press:
+        app.window.current_screen.build(page_change=1)
+
+<PrevButton>:
+    size_hint: 0.1, 0.05
+    on_press:
+        app.window.current_screen.build(page_change=-1)
+
+<BackButton>:
+    size_hint: 0.1, 0.5
+    on_press:
+        app.window.current = 'start'
+        app.window.transition.direction = 'down'
+
+<NewNoteButton>:
+    size_hint: 0.1, 0.05
+    on_press:
+        app.window.current = 'note'
+        app.window.transition.direction = 'up'
+        app.window.current_screen.build(None)
+
 <StartScreen>:
 	name: 'start'
 
@@ -38,3 +72,9 @@
 
 <CreateSaveScreen>:
     name: 'create-save'
+
+<NotesScreen>:
+    name: 'notes'
+
+<NoteScreen>:
+    name: 'note'
