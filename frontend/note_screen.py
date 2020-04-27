@@ -9,7 +9,13 @@ class NoteScreen(Screen):
 
     def build(self, noteID):
         if noteID is not None:
-            note = self.__handler.select_query('notes', ['noteID = '+str(noteID)])
+            note = self.__handler.select_query('*', 'notes', ['noteID = '+str(noteID)])
+            self.__noteID = noteID
+            customer = note[2]
+            requirements = note[3]
+            deadline = note[5]
+            completed = note[4]
 
         else:
-            pass
+            notes = self.__handler.select_query('*', 'notes', None)
+            self.__saveID = len(notes) 

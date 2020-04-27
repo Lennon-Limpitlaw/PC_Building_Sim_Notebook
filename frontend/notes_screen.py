@@ -16,7 +16,7 @@ class NotesScreen(Screen):
 		else:
 			self.__page_number = 0
 
-		notes = self.__handler.select_query('notes', ['saveID = '+str(self.get_saveID()), 'completed = False'])
+		notes = self.__handler.select_query('*', 'notes', ['saveID = '+str(self.get_saveID()), 'completed = False'])
 
 		note_num = self.__page_number * 6
 		count = 0
