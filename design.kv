@@ -92,6 +92,14 @@
         app.window.current = 'notes'
         app.window.transition.direction = 'down'
 
+<DeleteNoteButton>:
+    size_hint: 0.1, 0.1
+    on_press:
+        app.window.current_screen.delete()
+        app.window.current = 'notes'
+        app.window.transition.direction = 'down'
+        app.window.current_screen.build()
+
 <StartScreen>:
 	name: 'start'
 

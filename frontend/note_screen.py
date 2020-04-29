@@ -1,7 +1,7 @@
 from kivy.uix.screenmanager import Screen
 from kivy.uix.label import Label
 from backend.database.wrapper import Handler
-from .gui_utilities import CustomerBar, RequirementsBar, DeadlineBar, CompletedCheckBox, SubmitNoteButton, NoteBackButton
+from .gui_utilities import CustomerBar, RequirementsBar, DeadlineBar, CompletedCheckBox, SubmitNoteButton, NoteBackButton, DeleteNoteButton
 
 
 class NoteScreen(Screen):
@@ -52,6 +52,7 @@ class NoteScreen(Screen):
         self.add_widget(Label(text='Completed: ', pos_hint={'x':0.2, 'y':0.2}, size_hint=(0.2, 0.1)))
         self.add_widget(SubmitNoteButton(0.35, 0.05, 'Submit'))
         self.add_widget(NoteBackButton(0, 0.9, 'Back'))
+        self.add_widget(DeleteNoteButton(0.9, 0.9, 'Delete'))
 
     def submit(self):
         if self.__existing:

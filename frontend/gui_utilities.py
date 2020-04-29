@@ -140,3 +140,10 @@ class NoteBackButton(Button):
 		super(NoteBackButton, self).__init__(**kwargs)
 		self.pos_hint = {'x':x, 'y':y}
 		self.text = text
+
+
+class DeleteNoteButton(Button):
+	def __init__(self, x, y, text, **kwargs):
+		super(DeleteNoteButton, self).__init__(**kwargs)
+		self.pos_hint = {'x':x, 'y':y}
+		self.text = text
