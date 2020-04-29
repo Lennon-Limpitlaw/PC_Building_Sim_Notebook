@@ -10,7 +10,9 @@ class NotesScreen(Screen):
 
 	def build(self, saveID=None, page_change=None):
 		self.clear_widgets()
-		self.__saveID = saveID
+		if saveID is not None:
+			self.__saveID = saveID
+
 		if page_change is not None:
 			self.__page_number += page_change
 		else:
@@ -21,16 +23,16 @@ class NotesScreen(Screen):
 		note_num = self.__page_number * 6
 		count = 0
 		for i in range(6):
-			text = '''
-			Customer: %s
-			Deadline: %s
-			''' % (notes[note_num][2], str(notes[note_num][5]))
-			the_note_button = NoteButton(0.1+(i//3)*0.45, (0.7-(i%3)*0.3), text, notes[note_num][0])
-			self.add_widget(the_note_button)
-			note_num += 1
-			count += 1
+			try:
+				text = 'Customer: %s\nDeadline: %s' % (notes[note_num][2], str(notes[note_num][5]))
+				the_note_button = NoteButton(0.1+(i//3)*0.45, (0.7-(i%3)*0.3), text, notes[note_num][0])
+				self.add_widget(the_note_button)
+				note_num += 1
+				count += 1
+			except:
+				break
 
-		if len(notes) > self.__page_number * 6:
+		if len(notes) > (self.__page_number+1) * 6:
 			next_button = NextButton(0.9, 0, 'Next')
 			self.add_widget(next_button)
 

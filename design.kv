@@ -37,9 +37,10 @@
 <NoteButton>:
     size_hint: 0.35, 0.2
     on_press:
+        temp = app.window.current_screen.get_saveID()
         app.window.current = 'note'
         app.window.transition.direction = 'up'
-        app.window.current_screen.build(self.get_noteID(), app.window.current_screen.get_saveID())
+        app.window.current_screen.build(self.get_noteID(), temp)
 
 <NextButton>:
     size_hint: 0.1, 0.05
@@ -52,7 +53,7 @@
         app.window.current_screen.build(page_change=-1)
 
 <BackButton>:
-    size_hint: 0.1, 0.5
+    size_hint: 0.1, 0.05
     on_press:
         app.window.current = 'start'
         app.window.transition.direction = 'down'
@@ -60,9 +61,10 @@
 <NewNoteButton>:
     size_hint: 0.1, 0.05
     on_press:
+        temp = app.window.current_screen.get_saveID()
         app.window.current = 'note'
         app.window.transition.direction = 'up'
-        app.window.current_screen.build(None, app.window.current_screen.get_saveID())
+        app.window.current_screen.build(None, temp)
 
 <CustomerBar>:
     size_hint: 0.4, 0.1
@@ -80,6 +82,9 @@
     size_hint: 0.3, 0.1
     on_press:
         app.window.current_screen.submit()
+        app.window.current = 'notes'
+        app.window.transition.direction = 'down'
+        app.window.current_screen.build()
 
 <NoteBackButton>:
     size_hint: 0.1, 0.1

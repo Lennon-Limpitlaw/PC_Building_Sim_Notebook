@@ -18,7 +18,7 @@ class NoteScreen(Screen):
 
         if noteID is not None:
             self.__existing = True
-            note = self.__handler.select_query('*', 'notes', ['noteID = '+str(noteID)])
+            note = self.__handler.select_query('*', 'notes', ['noteID = '+str(noteID)])[0]
             self.__noteID = noteID
             customer = note[2]
             requirements = note[3]
@@ -63,7 +63,7 @@ class NoteScreen(Screen):
             updates.append('deadline = \''+self.__bars[2].text+'\'')
             updates.append('completed = '+str(int(self.__bars[3].active)))
 
-            conditions = ['noteID = '+self.__noteID]
+            conditions = ['noteID = '+str(self.__noteID)]
 
             self.__handler.update_query(table, updates, conditions)
 
@@ -71,9 +71,9 @@ class NoteScreen(Screen):
             table = 'notes'
             values = [str(self.__noteID), str(self.__saveID)]
 
-            values.append(self.__bars[0].text)
-            values.append(self.__bars[1].text)
-            values.append(self.__bars[3].text)
-            values.append(str(int(self.__bars[2].active)))
+            values.append('\''+self.__bars[0].text+'\'')
+            values.append('\''+self.__bars[1].text+'\'')
+            values.append(str(int(self.__bars[3].active)))
+            values.append('\''+self.__bars[2].text+'\'')
 
             self.__handler.insert_query(table, values)

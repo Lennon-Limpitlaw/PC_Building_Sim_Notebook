@@ -28,7 +28,6 @@ class Handler(object):
 		query += ';'
 
 		connection, cursor = self.__get_conn_and_cur()
-		print(query)
 
 		cursor.execute(query)
 		rows = cursor.fetchall()
