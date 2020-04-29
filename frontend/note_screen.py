@@ -1,7 +1,7 @@
 from kivy.uix.screenmanager import Screen
 from kivy.uix.label import Label
 from backend.database.wrapper import Handler
-from .gui_utilities import CustomerBar, RequirementsBar, DeadlineBar, CompletedCheckBox, SubmitNoteButton, NoteBackButton
+from .gui_utilities import CustomerBar, RequirementsBar, DeadlineBar, CompletedCheckBox, SubmitNoteButton, NoteBackButton, DeleteNoteButton
 
 
 class NoteScreen(Screen):
@@ -18,7 +18,7 @@ class NoteScreen(Screen):
 
         if noteID is not None:
             self.__existing = True
-            note = self.__handler.select_query('*', 'notes', ['noteID = '+str(noteID)])
+            note = self.__handler.select_query('*', 'notes', ['noteID = '+str(noteID)])[0]
             self.__noteID = noteID
             customer = note[2]
             requirements = note[3]
@@ -52,6 +52,7 @@ class NoteScreen(Screen):
         self.add_widget(Label(text='Completed: ', pos_hint={'x':0.2, 'y':0.2}, size_hint=(0.2, 0.1)))
         self.add_widget(SubmitNoteButton(0.35, 0.05, 'Submit'))
         self.add_widget(NoteBackButton(0, 0.9, 'Back'))
+        self.add_widget(DeleteNoteButton(0.9, 0.9, 'Delete'))
 
     def submit(self):
         if self.__existing:
@@ -63,7 +64,7 @@ class NoteScreen(Screen):
             updates.append('deadline = \''+self.__bars[2].text+'\'')
             updates.append('completed = '+str(int(self.__bars[3].active)))
 
-            conditions = ['noteID = '+self.__noteID]
+            conditions = ['noteID = '+str(self.__noteID)]
 
             self.__handler.update_query(table, updates, conditions)
 
@@ -71,9 +72,9 @@ class NoteScreen(Screen):
             table = 'notes'
             values = [str(self.__noteID), str(self.__saveID)]
 
-            values.append(self.__bars[0].text)
-            values.append(self.__bars[1].text)
-            values.append(self.__bars[3].text)
-            values.append(str(int(self.__bars[2].active)))
+            values.append('\''+self.__bars[0].text+'\'')
+            values.append('\''+self.__bars[1].text+'\'')
+            values.append(str(int(self.__bars[3].active)))
+            values.append('\''+self.__bars[2].text+'\'')
 
             self.__handler.insert_query(table, values)
