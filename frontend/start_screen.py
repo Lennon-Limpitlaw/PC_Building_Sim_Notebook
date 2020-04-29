@@ -1,6 +1,6 @@
 from kivy.uix.screenmanager import Screen
 from backend.database.wrapper import Handler
-from .button_utilities import *
+from .gui_utilities import *
 
 
 class StartScreen(Screen):

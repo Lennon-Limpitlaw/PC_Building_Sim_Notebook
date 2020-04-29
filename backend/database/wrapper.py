@@ -6,9 +6,7 @@ class Handler(object):
 		self.__filename = filename
 
 	def select_query(self, elements, table, conditions, order=None):
-		query = '''
-		SELECT
-		'''
+		query = 'SELECT '
 
 		for element in elements:
 			query += element + ', '
@@ -30,6 +28,7 @@ class Handler(object):
 		query += ';'
 
 		connection, cursor = self.__get_conn_and_cur()
+		print(query)
 
 		cursor.execute(query)
 		rows = cursor.fetchall()
@@ -58,6 +57,25 @@ class Handler(object):
 			query += value + ', '
 
 		query = query[:-2] + ');'
+
+		connection, cursor = self.__get_conn_and_cur()
+
+		cursor.execute(query)
+		connection.commit()
+		connection.close()
+
+	def update_query(self, table, updates, conditions):
+		query = 'UPDATE ' + table + ' SET '
+
+		for update in updates:
+			query += update + ', '
+
+		query = query[:-2] + ' WHERE '
+
+		for condition in conditions:
+			query += condition + ' AND '
+
+		query = query[:-5] +';'
 
 		connection, cursor = self.__get_conn_and_cur()
 

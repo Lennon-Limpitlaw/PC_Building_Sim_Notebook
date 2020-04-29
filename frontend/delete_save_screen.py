@@ -1,6 +1,6 @@
 from kivy.uix.screenmanager import Screen
 from kivy.uix.label import Label
-from .button_utilities import VerifyDeleteButton
+from .gui_utilities import VerifyDeleteButton
 
 
 class DeleteSaveScreen(Screen):
