@@ -1,7 +1,7 @@
 from kivy.uix.screenmanager import Screen
 from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
-from .button_utilities import SubmitSaveButton
+from .gui_utilities import SubmitSaveButton
 
 
 class CreateSaveScreen(Screen):

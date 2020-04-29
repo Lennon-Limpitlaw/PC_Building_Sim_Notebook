@@ -1,6 +1,6 @@
 from kivy.uix.screenmanager import Screen
 from backend.database.wrapper import Handler
-from .button_utilities import NoteButton, NextButton, PrevButton, BackButton, NewNoteButton
+from .gui_utilities import NoteButton, NextButton, PrevButton, BackButton, NewNoteButton
 
 
 class NotesScreen(Screen):
@@ -16,7 +16,7 @@ class NotesScreen(Screen):
 		else:
 			self.__page_number = 0
 
-		notes = self.__handler.select_query('*', 'notes', ['saveID = '+str(self.get_saveID()), 'completed = False'])
+		notes = self.__handler.select_query('*', 'notes', ['saveID = '+str(self.get_saveID()), 'completed = 0'])
 
 		note_num = self.__page_number * 6
 		count = 0

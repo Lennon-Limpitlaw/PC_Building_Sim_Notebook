@@ -133,3 +133,10 @@ class SubmitNoteButton(Button):
 		super(SubmitNoteButton, self).__init__(**kwargs)
 		self.pos_hint = {'x':x, 'y':y}
 		self.text = text
+
+
+class NoteBackButton(Button):
+	def __init__(self, x, y, text, *kwargs):
+		super(NoteBackButton, self).__init__(**kwargs)
+		self.pos_hint = {'x':x, 'y':y}
+		self.text = text
