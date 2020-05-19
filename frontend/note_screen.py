@@ -78,3 +78,10 @@ class NoteScreen(Screen):
             values.append('\''+self.__bars[2].text+'\'')
 
             self.__handler.insert_query(table, values)
+    
+    def delete(self):
+        if self.__existing:
+            table = 'notes'
+            conditions = ['noteID = '+self.__noteID, 'saveID = '+self.__saveID]
+            
+            self.__handler.delete_query(table, conditions)
