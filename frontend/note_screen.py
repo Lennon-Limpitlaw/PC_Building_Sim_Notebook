@@ -82,6 +82,6 @@ class NoteScreen(Screen):
     def delete(self):
         if self.__existing:
             table = 'notes'
-            conditions = ['noteID = '+self.__noteID, 'saveID = '+self.__saveID]
+            conditions = ['noteID = '+str(self.__noteID), 'saveID = '+str(self.__saveID)]
             
             self.__handler.delete_query(table, conditions)
